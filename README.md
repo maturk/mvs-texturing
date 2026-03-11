@@ -29,7 +29,7 @@ dependencies (so there is nothing you need to do here):
 - rayint
     https://github.com/nmoehrle/rayint
 - Eigen
-    http://eigen.tuxfamily.org
+    https://libeigen.gitlab.io
 - Multi-View Environment
     https://github.com/simonfuhrmann/mve
 - mapMAP
