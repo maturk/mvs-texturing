@@ -7,14 +7,7 @@ motion and multi-view stereo techniques, however, it is not limited to this
 setting.
 
 The algorithm was published in Sept. 2014 on the
-*European Conference on Computer Vision*. Please refer to our project website
-(http://www.gcc.tu-darmstadt.de/home/proj/texrecon/)
-for the paper and further information.
-
-*Please be aware that while the interface of the `texrecon` application is
-relatively stable the interface of the `tex` library is currently subject to
-frequent changes.*
-
+*European Conference on Computer Vision* in [Let There Be Color! Large-Scale Texturing of 3D Reconstructions](https://download.mmag.hrz.tu-darmstadt.de/media/FB20/GCC/paper/Waechter-2014-LTB.pdf)
 
 Dependencies
 --------------------------------------------------------------------------------
@@ -74,8 +67,6 @@ registered against this model. One way to obtain this is to:
     (http://www.gcc.tu-darmstadt.de/home/proj/fssr/)
     algorithm.
 
-A quick guide on how to use these applications can be found on our project [website](http://www.gcc.tu-darmstadt.de/home/proj/texrecon/).
-
 By starting the application without any parameters and you will get a
 description of the expected file formats and optional parameters.
 
@@ -111,6 +102,3 @@ Contact
 If you have trouble compiling or using this software, if you found a bug or if
 you have an important feature request, please use the issue tracker of github:
 https://github.com/nmoehrle/mvs-texturing
-
-For further questions you may contact us at
-mvs-texturing(at)gris.informatik.tu-darmstadt.de
