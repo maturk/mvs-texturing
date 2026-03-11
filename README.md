@@ -29,10 +29,9 @@ dependencies (so there is nothing you need to do here):
 - Eigen
     http://eigen.tuxfamily.org
 - Multi-View Environment
-    http://www.gcc.tu-darmstadt.de/home/proj/mve
+    https://github.com/simonfuhrmann/mve
 - mapMAP
-    http://www.gcc.tu-darmstadt.de/home/proj/mapmap
-
+    https://github.com/dthuerck/mapmap_cpu
 
 Compilation ![Build Status](https://travis-ci.org/nmoehrle/mvs-texturing.svg)
 --------------------------------------------------------------------------------
