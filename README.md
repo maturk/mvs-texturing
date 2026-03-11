@@ -7,7 +7,7 @@ motion and multi-view stereo techniques, however, it is not limited to this
 setting.
 
 The algorithm was published in Sept. 2014 on the
-*European Conference on Computer Vision* in [Let There Be Color! Large-Scale Texturing of 3D Reconstructions](https://download.mmag.hrz.tu-darmstadt.de/media/FB20/GCC/paper/Waechter-2014-LTB.pdf)
+*European Conference on Computer Vision* in [Let There Be Color! Large-Scale Texturing of 3D Reconstructions](https://download.mmag.hrz.tu-darmstadt.de/media/FB20/GCC/paper/Waechter-2014-LTB.pdf) see publication details below.
 
 Dependencies
 --------------------------------------------------------------------------------
