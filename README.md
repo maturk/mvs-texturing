@@ -7,7 +7,9 @@ motion and multi-view stereo techniques, however, it is not limited to this
 setting.
 
 The algorithm was published in Sept. 2014 on the
-*European Conference on Computer Vision* in [Let There Be Color! Large-Scale Texturing of 3D Reconstructions](https://download.mmag.hrz.tu-darmstadt.de/media/FB20/GCC/paper/Waechter-2014-LTB.pdf) see publication details below.
+*European Conference on Computer Vision* in 
+[Let There Be Color! Large-Scale Texturing of 3D Reconstructions](https://download.mmag.hrz.tu-darmstadt.de/media/FB20/GCC/paper/Waechter-2014-LTB.pdf)
+see publication details below.
 
 Dependencies
 --------------------------------------------------------------------------------
@@ -57,14 +59,8 @@ Execution
 
 As input our algorithm requires a triangulated 3D model and images that are
 registered against this model. One way to obtain this is to:
-*   import images, infer camera parameters and reconstruct depth maps
-    using the [Multi-View Environment]
-    (http://www.gcc.tu-darmstadt.de/home/proj/mve/),
-    and
-*   fuse these depth maps into a combined 3D model using the
-    [Floating Scale Surface Reconstruction]
-    (http://www.gcc.tu-darmstadt.de/home/proj/fssr/)
-    algorithm.
+*   import images, infer camera parameters, reconstruct depth maps and fuse these depth maps into a combined 3d model
+    using the applications from the [Multi-View Environment](https://github.com/simonfuhrmann/mve).
 
 By starting the application without any parameters and you will get a
 description of the expected file formats and optional parameters.
@@ -99,5 +95,5 @@ If you use our texturing code for research purposes, please cite our paper:
 Contact
 --------------------------------------------------------------------------------
 If you have trouble compiling or using this software, if you found a bug or if
-you have an important feature request, please use the issue tracker of github:
-https://github.com/nmoehrle/mvs-texturing
+you have an important feature request, please use the issue tracker of the [github repository
+](https://github.com/nmoehrle/mvs-texturing).
