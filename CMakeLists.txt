@@ -25,8 +25,13 @@ if(OPENMP_FOUND)
     set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${OpenMP_EXE_LINKER_FLAGS}")
 endif()
 
+# Target microarchitecture. "native" optimizes for the BUILD machine's CPU and
+# is wrong for binaries that run elsewhere (e.g. built in CI, run on cloud
+# workers) — pass e.g. -DTEXRECON_MARCH=x86-64-v3 for a portable binary.
+set(TEXRECON_MARCH "native" CACHE STRING "Value for -march= (e.g. native, x86-64-v3)")
+
 if(CMAKE_COMPILER_IS_GNUCXX)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -march=native -Wall -Wextra -Wundef -pedantic")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -march=${TEXRECON_MARCH} -Wall -Wextra -Wundef -pedantic")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mfpmath=sse -funroll-loops")
 endif()
 

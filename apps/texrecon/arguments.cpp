@@ -18,6 +18,8 @@
 #define SKIP_HOLE_FILLING "skip_hole_filling"
 #define KEEP_UNSEEN_FACES "keep_unseen_faces"
 #define NUM_THREADS "num_threads"
+#define MAX_TEXTURE_SIZE "max_texture_size"
+#define PREF_TEXTURE_SIZE "pref_texture_size"
 
 Arguments parse_args(int argc, char **argv) {
     util::Arguments args;
@@ -89,6 +91,10 @@ Arguments parse_args(int argc, char **argv) {
         "Do not write out intermediate results");
     args.add_option('\0', NUM_THREADS, true,
         "How many threads to use. Set 1 for determinism.");
+    args.add_option('\0', MAX_TEXTURE_SIZE, true,
+        "Hard cap on texture atlas edge length in pixels [8192]");
+    args.add_option('\0', PREF_TEXTURE_SIZE, true,
+        "Preferred texture atlas edge length in pixels [4096]; larger values produce fewer, bigger atlases");
     args.parse(argc, argv);
 
     Arguments conf;
@@ -146,6 +152,10 @@ Arguments parse_args(int argc, char **argv) {
                 conf.write_timings = true;
             } else if (i->opt->lopt == NO_INTERMEDIATE_RESULTS) {
                 conf.write_intermediate_results = false;
+            } else if (i->opt->lopt == MAX_TEXTURE_SIZE) {
+                conf.settings.max_texture_size = std::stoul(i->arg);
+            } else if (i->opt->lopt == PREF_TEXTURE_SIZE) {
+                conf.settings.pref_texture_size = std::stoul(i->arg);
             } else if (i->opt->lopt == NUM_THREADS) {
                 conf.num_threads = std::stoi(i->arg);
             } else {

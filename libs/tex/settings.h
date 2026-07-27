@@ -92,6 +92,14 @@ struct Settings {
     bool local_seam_leveling = true;
     bool hole_filling = true;
     bool keep_unseen_faces = false;
+
+    /** Hard cap on texture atlas edge length (pixels, power of two). */
+    unsigned int max_texture_size = 8 * 1024;
+    /** Preferred atlas edge length; the sizing heuristic shrinks to this when
+      * the patches plausibly fit within ~8 preferred-size atlases. Larger
+      * values produce fewer, bigger atlases (faster downstream GLB conversion
+      * and friendlier to viewers) at the cost of peak memory. */
+    unsigned int pref_texture_size = 4 * 1024;
 };
 
 TEX_NAMESPACE_END
