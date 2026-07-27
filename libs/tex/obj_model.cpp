@@ -21,13 +21,15 @@
 #define OBJ_INDEX_OFFSET 1
 
 void
-ObjModel::save(ObjModel const & model, std::string const & prefix) {
-    model.save_to_files(prefix);
+ObjModel::save(ObjModel const & model, std::string const & prefix,
+    std::string const & atlas_format) {
+    model.save_to_files(prefix, atlas_format);
 }
 
 void
-ObjModel::save_to_files(std::string const & prefix) const {
-    material_lib.save_to_files(prefix);
+ObjModel::save_to_files(std::string const & prefix,
+    std::string const & atlas_format) const {
+    material_lib.save_to_files(prefix, atlas_format);
 
     std::string name = util::fs::basename(prefix);
     std::ofstream out((prefix + ".obj").c_str());

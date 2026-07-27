@@ -7,6 +7,9 @@
  * of the BSD 3-Clause license. See the LICENSE.txt file for details.
  */
 
+#include <cstdlib>
+#include <iostream>
+
 #include "arguments.h"
 #include "util/file_system.h"
 
@@ -20,6 +23,7 @@
 #define NUM_THREADS "num_threads"
 #define MAX_TEXTURE_SIZE "max_texture_size"
 #define PREF_TEXTURE_SIZE "pref_texture_size"
+#define ATLAS_FORMAT "atlas_format"
 
 Arguments parse_args(int argc, char **argv) {
     util::Arguments args;
@@ -95,6 +99,8 @@ Arguments parse_args(int argc, char **argv) {
         "Hard cap on texture atlas edge length in pixels [8192]");
     args.add_option('\0', PREF_TEXTURE_SIZE, true,
         "Preferred texture atlas edge length in pixels [4096]; larger values produce fewer, bigger atlases");
+    args.add_option('\0', ATLAS_FORMAT, true,
+        "Texture atlas image format: png or jpg [png]. jpg (quality 92) encodes much faster and suits pipelines that recompress atlases anyway.");
     args.parse(argc, argv);
 
     Arguments conf;
@@ -111,6 +117,7 @@ Arguments parse_args(int argc, char **argv) {
     conf.write_view_selection_model = false;
 
     conf.num_threads = -1;
+    conf.atlas_format = "png";
 
     /* Handle optional arguments. */
     for (util::ArgResult const* i = args.next_option();
@@ -152,6 +159,12 @@ Arguments parse_args(int argc, char **argv) {
                 conf.write_timings = true;
             } else if (i->opt->lopt == NO_INTERMEDIATE_RESULTS) {
                 conf.write_intermediate_results = false;
+            } else if (i->opt->lopt == ATLAS_FORMAT) {
+                conf.atlas_format = i->arg;
+                if (conf.atlas_format != "png" && conf.atlas_format != "jpg") {
+                    std::cerr << "Invalid atlas format: " << conf.atlas_format << std::endl;
+                    std::exit(EXIT_FAILURE);
+                }
             } else if (i->opt->lopt == MAX_TEXTURE_SIZE) {
                 conf.settings.max_texture_size = std::stoul(i->arg);
             } else if (i->opt->lopt == PREF_TEXTURE_SIZE) {

@@ -42,7 +42,8 @@ private:
 
 public:
     /** Saves the obj model to an .obj file, its material lib and the materials with the given prefix. */
-    void save_to_files(std::string const & prefix) const;
+    void save_to_files(std::string const & prefix,
+        std::string const & atlas_format = "png") const;
 
     MaterialLib & get_material_lib(void);
     Vertices & get_vertices(void);
@@ -50,7 +51,8 @@ public:
     Normals & get_normals(void);
     Groups & get_groups(void);
 
-    static void save(ObjModel const & model, std::string const & prefix);
+    static void save(ObjModel const & model, std::string const & prefix,
+        std::string const & atlas_format = "png");
 };
 
 inline

@@ -17,8 +17,11 @@
 
 #include "material_lib.h"
 
+#define ATLAS_JPEG_QUALITY 92
+
 void
-MaterialLib::save_to_files(std::string const & prefix) const {
+MaterialLib::save_to_files(std::string const & prefix,
+    std::string const & atlas_format) const {
     std::string filename = prefix + ".mtl";
     std::ofstream out(filename.c_str());
     if (!out.good())
@@ -27,7 +30,7 @@ MaterialLib::save_to_files(std::string const & prefix) const {
     std::string const name = util::fs::basename(prefix);
 
     for (Material const & material : *this) {
-        std::string diffuse_map_postfix = "_" + material.name + "_map_Kd.png";
+        std::string diffuse_map_postfix = "_" + material.name + "_map_Kd." + atlas_format;
         out << "newmtl " << material.name << '\n'
             << "Ka 1.000000 1.000000 1.000000" << '\n'
             << "Kd 1.000000 1.000000 1.000000" << '\n'
@@ -39,8 +42,15 @@ MaterialLib::save_to_files(std::string const & prefix) const {
     }
     out.close();
 
-    for (Material const & material : *this) {
-        std::string filename = prefix + "_" + material.name + "_map_Kd.png";
-        mve::image::save_png_file(material.diffuse_map, filename);
+    /* Encoding the atlases dominates saving; they are independent files. */
+    #pragma omp parallel for schedule(dynamic)
+    for (std::size_t i = 0; i < this->size(); ++i) {
+        Material const & material = this->at(i);
+        std::string filename = prefix + "_" + material.name + "_map_Kd." + atlas_format;
+        if (atlas_format == "jpg") {
+            mve::image::save_jpg_file(material.diffuse_map, filename, ATLAS_JPEG_QUALITY);
+        } else {
+            mve::image::save_png_file(material.diffuse_map, filename);
+        }
     }
 }

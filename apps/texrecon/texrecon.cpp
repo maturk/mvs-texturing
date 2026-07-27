@@ -202,7 +202,7 @@ int main(int argc, char **argv) {
         timer.measure("Building OBJ model");
 
         std::cout << "\tSaving model... " << std::flush;
-        tex::Model::save(model, conf.out_prefix);
+        tex::Model::save(model, conf.out_prefix, conf.atlas_format);
         std::cout << "done." << std::endl;
         timer.measure("Saving");
     }
@@ -230,7 +230,7 @@ int main(int argc, char **argv) {
             tex::Model model;
             tex::build_model(mesh, texture_atlases, &model);
             std::cout << "\tSaving model... " << std::flush;
-            tex::Model::save(model, conf.out_prefix + "_view_selection");
+            tex::Model::save(model, conf.out_prefix + "_view_selection", conf.atlas_format);
             std::cout << "done." << std::endl;
         }
     }

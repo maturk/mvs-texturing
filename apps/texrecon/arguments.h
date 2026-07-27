@@ -30,6 +30,8 @@ struct Arguments {
 
     int num_threads;
 
+    std::string atlas_format;
+
     /** Returns a muliline string of the current arguments. */
     std::string to_string();
 };
